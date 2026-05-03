@@ -7,8 +7,7 @@ static int lowerBoundInt(int* arr, int len, int x) {
         int m = l + (r - l) / 2;
         if (arr[m] < x) {
             l = m + 1;
-        }
-        else {
+        } else {
             r = m;
         }
     }
@@ -21,8 +20,7 @@ static int upperBoundInt(int* arr, int len, int x) {
         int m = l + (r - l) / 2;
         if (arr[m] <= x) {
             l = m + 1;
-        }
-        else {
+        } else {
             r = m;
         }
     }
@@ -53,15 +51,13 @@ int countPairs2(int* arr, int len, int value) {
 
         if (sum < value) {
             l++;
-        }
-        else if (sum > value) {
+        } else if (sum > value) {
             r--;
-        }
-        else {
+        } else {
             if (arr[l] == arr[r]) {
-                int n = r - l + 1;
-                k += n * (n - 1) / 2;
-                break;
+            int n = r - l + 1;
+            k += n * (n - 1) / 2;
+            break;
             }
 
             int leftValue = arr[l];
@@ -116,11 +112,9 @@ int countPairs3(int* arr, int len, int value) {
 
         if (need == cur) {
             k += curk * (curk - 1) / 2;
-        }
-        else {
+        } else {
             k += curk * needk;
         }
     }
-
     return k;
 }
