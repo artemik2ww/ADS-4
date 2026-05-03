@@ -1,3 +1,6 @@
+// Copyright 2021 NNTU-CS
+#include "alg.h"
+
 static int lowerBoundInt(int* arr, int len, int x) {
     int l = 0, r = len;
     while (l < r) {
