@@ -1,35 +1,43 @@
-static int lowerBoundInt(int* arr, int len, int x)
-{
+static int lowerBoundInt(int* arr, int len, int x) {
     int l = 0, r = len;
     while (l < r) {
         int m = l + (r - l) / 2;
-        if (arr[m] < x) l = m + 1;
-        else r = m;
+        if (arr[m] < x) {
+            l = m + 1;
+        }
+        else {
+            r = m;
+        }
     }
     return l;
 }
 
-static int upperBoundInt(int* arr, int len, int x)
-{
+static int upperBoundInt(int* arr, int len, int x) {
     int l = 0, r = len;
     while (l < r) {
         int m = l + (r - l) / 2;
-        if (arr[m] <= x) l = m + 1;
-        else r = m;
+        if (arr[m] <= x) {
+            l = m + 1;
+        }
+        else {
+            r = m;
+        }
     }
     return l;
 }
 
 int countPairs1(int* arr, int len, int value) {
-    int k = 0;
+    int count = 0;
+
     for (int i = 0; i < len; i++) {
         for (int j = i + 1; j < len; j++) {
-            if (arr[i] + arr[j] == value)
-                k++;
+            if (arr[i] + arr[j] == value) {
+                count++;
+            }
         }
     }
 
-    return k;
+    return count;
 }
 
 int countPairs2(int* arr, int len, int value) {
@@ -42,9 +50,11 @@ int countPairs2(int* arr, int len, int value) {
 
         if (sum < value) {
             l++;
-        } else if (sum > value) {
+        }
+        else if (sum > value) {
             r--;
-        } else {
+        }
+        else {
             if (arr[l] == arr[r]) {
                 int n = r - l + 1;
                 k += n * (n - 1) / 2;
@@ -74,34 +84,37 @@ int countPairs2(int* arr, int len, int value) {
     return k;
 }
 
-int countPairs3(int* arr, int len, int value)
-{
+int countPairs3(int* arr, int len, int value) {
     int k = 0;
     int i = 0;
 
     while (i < len) {
         int cur = arr[i];
-        int curs = i;
+        int curS = i;
 
-        while (i < len && arr[i] == cur)
+        while (i < len && arr[i] == cur) {
             i++;
+        }
 
-        int curk = i - curs;
+        int curk = i - curS;
         int need = value - cur;
 
-        if (need < cur)
+        if (need < cur) {
             continue;
+        }
 
         int lb = lowerBoundInt(arr, len, need);
         int ub = upperBoundInt(arr, len, need);
         int needk = ub - lb;
 
-        if (needk == 0)
+        if (needk == 0) {
             continue;
+        }
 
         if (need == cur) {
             k += curk * (curk - 1) / 2;
-        } else {
+        }
+        else {
             k += curk * needk;
         }
     }
